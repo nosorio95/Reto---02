@@ -3,10 +3,9 @@ import { CohereClient } from "cohere-ai";
 
 dotenv.config();
 
-const cohere =
-  new CohereClient({
-    token: process.env.COHERE_API_KEY
-  });
+const cohere = new CohereClient({
+  token: process.env.CO_API_KEY
+});
 
 export async function preguntarIA(
   prompt: string
@@ -18,9 +17,5 @@ export async function preguntarIA(
       message: prompt
     });
 
-  return (
-    response.text ||
-    "Sin respuesta"
-  );
-
+  return response.text || "Sin respuesta";
 }
