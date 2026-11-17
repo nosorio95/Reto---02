@@ -1,0 +1,35 @@
+{
+  "name": "reto-02",
+  "version": "1.0.0",
+  "description": "Agente de registro de contratos",
+  "main": "index.js",
+  "scripts": {
+    "demo": "ts-node demo.ts",
+    "demo-ia": "ts-node demo-ia.ts",
+    "dev": "ts-node demo.ts",
+    "ia": "ts-node prueba-ia.ts",
+    "chat": "ts-node chat.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "fs-extra": "^11.4.1",
+    "openai": "^7.57.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^26.6.6",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}
