@@ -63,9 +63,14 @@ async function enviarMensaje() {
     const data =
       await response.json();
 
+    const respuesta =
+      data?.respuesta ||
+      data?.error ||
+      "Sin respuesta del agente";
+
     agregarMensaje(
       "bot",
-      `Agente: ${data.respuesta}`
+      `Agente: ${respuesta}`
     );
 
   } catch (error) {

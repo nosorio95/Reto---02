@@ -31,13 +31,17 @@ app.post("/api/chat", async (req, res) => {
       );
 
     res.json({
-      respuesta
+      respuesta:
+        respuesta || "Sin respuesta"
     });
 
   } catch (error) {
 
+    console.error(error);
+
     res.status(500).json({
-      error: String(error)
+      respuesta:
+        "Error procesando la solicitud"
     });
 
   }
@@ -45,7 +49,7 @@ app.post("/api/chat", async (req, res) => {
 });
 
 const PORT =
-  process.env.PORT || 3000;
+  Number(process.env.PORT) || 3000;
 
 app.listen(PORT, () => {
 
