@@ -1,26 +1,17 @@
+import { IAService } from "./IAService";
+
 export class ClasificadorService {
+
+  private ia =
+    new IAService();
 
   async clasificar(
     contenido: string
   ): Promise<string> {
 
-    const texto =
-      contenido.toLowerCase();
-
-    if (
-      texto.includes("cotización") ||
-      texto.includes("cotizacion")
-    ) {
-      return "DESCARTADO";
-    }
-
-    if (
-      texto.includes("contrato marco")
-    ) {
-      return "REVISION_HUMANA";
-    }
-
-    return "REGISTRAR";
+    return await this.ia.clasificar(
+      contenido
+    );
 
   }
 
