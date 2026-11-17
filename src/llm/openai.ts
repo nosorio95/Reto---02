@@ -1,30 +1,25 @@
-import OpenAI from "openai";
 import dotenv from "dotenv";
+import { CohereClient } from "cohere-ai";
 
 dotenv.config();
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  baseURL: "https://openrouter.ai/api/v1"
-});
+const cohere =
+  new CohereClient({
+    token: process.env.COHERE_API_KEY
+  });
 
 export async function preguntarIA(
   prompt: string
 ): Promise<string> {
 
   const response =
-    await client.chat.completions.create({
-      model: "openai/gpt-4o-mini",
-      messages: [
-        {
-          role: "user",
-          content: prompt
-        }
-      ]
+    await cohere.chat({
+      model: "command-r-plus",
+      message: prompt
     });
 
   return (
-    response.choices?.[0]?.message?.content ||
+    response.text ||
     "Sin respuesta"
   );
 

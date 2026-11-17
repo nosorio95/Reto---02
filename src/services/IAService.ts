@@ -9,63 +9,26 @@ export class IAService {
     const prompt = `
 Eres un analista senior de contratos.
 
-Analiza el contenido recibido y responde EXACTAMENTE con este formato:
+Analiza el texto recibido y responde EXACTAMENTE en este formato:
 
 CLASIFICACIÓN: REGISTRAR | DESCARTADO | REVISION_HUMANA
 
 MOTIVO:
 - Explica por qué clasificaste el documento.
-- Identifica si es contrato firmado, cotización, propuesta o contrato marco.
-- Indica si existe valor definido y vigencia.
+- Identifica si es contrato firmado, cotización o contrato marco.
 
 RECOMENDACIÓN:
 - Indica la acción que debe realizarse.
 
-Ejemplos:
-
-Si es una cotización:
-
-CLASIFICACIÓN: DESCARTADO
-
-MOTIVO:
-- El documento corresponde a una cotización comercial.
-- No existe evidencia de contrato firmado.
-
-RECOMENDACIÓN:
-- No registrar en el maestro de contratos.
-
-
-Si es un contrato marco:
-
-CLASIFICACIÓN: REVISION_HUMANA
-
-MOTIVO:
-- Se identifica un contrato marco.
-- No se observan órdenes de servicio específicas.
-
-RECOMENDACIÓN:
-- Validar manualmente antes del registro.
-
-
-Si es un contrato válido:
-
-CLASIFICACIÓN: REGISTRAR
-
-MOTIVO:
-- Se identifica un contrato firmado.
-- Existe valor contractual definido.
-- Existe vigencia definida.
-
-RECOMENDACIÓN:
-- Registrar el contrato en el maestro.
-
-Contenido a analizar:
+Texto:
 
 ${contenido}
 `;
 
     const respuesta =
-      await preguntarIA(prompt);
+      await preguntarIA(
+        prompt
+      );
 
     return respuesta;
 
