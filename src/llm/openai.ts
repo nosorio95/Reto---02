@@ -4,7 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY,
+  baseURL: "https://openrouter.ai/api/v1"
 });
 
 export async function preguntarIA(
@@ -12,10 +13,19 @@ export async function preguntarIA(
 ): Promise<string> {
 
   const response =
-    await client.responses.create({
-      model: "gpt-4.1-mini",
-      input: prompt
+    await client.chat.completions.create({
+      model: "openai/gpt-4o-mini",
+      messages: [
+        {
+          role: "user",
+          content: prompt
+        }
+      ]
     });
 
-  return response.output_text;
+  return (
+    response.choices?.[0]?.message?.content ||
+    "Sin respuesta"
+  );
+
 }
