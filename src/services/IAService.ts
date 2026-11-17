@@ -6,62 +6,27 @@ export class IAService {
     contenido: string
   ): Promise<string> {
 
-    try {
+    const prompt = `
+Eres un analista experto en gestión contractual.
 
-      const prompt = `
-Analiza el siguiente contenido.
+Analiza el texto recibido y responde con este formato:
 
-Responde únicamente una de estas opciones:
+CLASIFICACIÓN: REGISTRAR | DESCARTADO | REVISION_HUMANA
 
-REGISTRAR
-DESCARTADO
-REVISION_HUMANA
+MOTIVO:
+- Explica por qué clasificaste así.
 
-Reglas:
+RECOMENDACIÓN:
+- Indica qué debería hacer el usuario.
 
-- Si es una cotización => DESCARTADO
-- Si es un contrato marco => REVISION_HUMANA
-- Si es un contrato firmado => REGISTRAR
-
-Contenido:
+Texto:
 
 ${contenido}
 `;
 
-      const respuesta =
-        await Promise.race([
-          preguntarIA(prompt),
-          new Promise<string>((_, reject) =>
-            setTimeout(
-              () => reject(new Error("timeout")),
-              5000
-            )
-          )
-        ]);
-
-      return respuesta.trim();
-
-    } catch {
-
-      const texto =
-        contenido.toLowerCase();
-
-      if (
-        texto.includes("cotización") ||
-        texto.includes("cotizacion")
-      ) {
-        return "DESCARTADO";
-      }
-
-      if (
-        texto.includes("contrato marco")
-      ) {
-        return "REVISION_HUMANA";
-      }
-
-      return "REGISTRAR";
-
-    }
+    return await preguntarIA(
+      prompt
+    );
 
   }
 
