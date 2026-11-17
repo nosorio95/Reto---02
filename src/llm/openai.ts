@@ -11,15 +11,10 @@ export async function preguntarIA(
   prompt: string
 ): Promise<string> {
 
-  const response =
-    await cohere.chat({
-      model: "command-a-plus-08-2025",
-      message: prompt
-    });
+  const response = await cohere.chat({
+    model: "command",
+    message: prompt
+  });
 
-  return (
-    response.text ||
-    "Sin respuesta"
-  );
-
+  return response.text || "Sin respuesta";
 }
