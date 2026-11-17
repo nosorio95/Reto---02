@@ -13,7 +13,7 @@ export async function preguntarIA(
 
   const response =
     await cohere.chat({
-      model: "command-r",
+      model: "command-a-plus-08-2025",
       message: prompt
     });
 
