@@ -37,11 +37,14 @@ app.post("/api/chat", async (req, res) => {
 
   } catch (error) {
 
-    console.error(error);
+    console.error(
+      "ERROR API CHAT:",
+      error
+    );
 
     res.status(500).json({
       respuesta:
-        "Error procesando la solicitud"
+        String(error)
     });
 
   }
