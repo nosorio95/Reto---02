@@ -13,9 +13,13 @@ export async function preguntarIA(
 
   const response =
     await cohere.chat({
-      model: "command-r-plus",
+      model: "command-r",
       message: prompt
     });
 
-  return response.text || "Sin respuesta";
+  return (
+    response.text ||
+    "Sin respuesta"
+  );
+
 }
